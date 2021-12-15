@@ -69,8 +69,8 @@ Serão considerados extras:
 - Faça um fork deste projeto em sua conta no [Github](https://github.com/join).
 - Crie um repositório *privado*, com a solução do seu desafio. 
 - Em seguida, desenvolva o projeto. 
-- Adicione como membro do repositório o usuario [@vagas-liveonsolutions](https://github.com/vagas-liveonsolutions).
-- Por fim, envie um email informando que concluiu o desafio p/ vagas@liveonsolutions.com. (coloque no assunto o nome do desafio)
+- Adicione como membro do repositório o usuario  @DiegoCarriao.
+- Por fim, envie um email informando que concluiu o desafio para diego.carriao@shsquads.com
 
 <br> 
 
@@ -78,7 +78,7 @@ Serão considerados extras:
 
 <br>
 
-https://www.liveonsolutions.com/
+https://www.shsquads.com
 
 <br>
 
