@@ -4,11 +4,11 @@ const routes = express.Router();
 
 routes.get('/', (_, res) => {
   //  #swagger.tags = ['Service'] 
-  //  #swagger.description = 'TESTE - API - Serviço de Integração'
-  console.log('SUCESSO - API - Serviço de Integração')
-  res.send('SUCESSO - API - Serviço de Integração')
+  //  #swagger.description = 'Test service'
+  console.log('Test service - SUCESS')
+  res.send('Test service - SUCESS')
   /* #swagger.responses[200] = {                 
-          description: "SUCESSO - API - Serviço de Integração" } */
+          description: "Test service" } */
 })
 
 export default routes;
