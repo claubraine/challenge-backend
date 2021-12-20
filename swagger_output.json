@@ -46,11 +46,11 @@
         "tags": [
           "Service"
         ],
-        "description": "TESTE - API - Serviço de Integração",
+        "description": "Test service",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "SUCESSO - API - Serviço de Integração"
+            "description": "Test service"
           }
         }
       }
@@ -1387,6 +1387,14 @@
           "example": ""
         },
         "username": {
+          "type": "string",
+          "example": ""
+        },
+        "host": {
+          "type": "string",
+          "example": ""
+        },
+        "key": {
           "type": "string",
           "example": ""
         }
