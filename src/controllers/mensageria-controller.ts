@@ -69,7 +69,7 @@ const sendMail = async (req: any, res: any) => {
         host_test = true
     }
  
-    var elemento = 'http://localhost:5000/api/doc/';
+    var elemento = 'http://localhost:'+ process.env.PORT +'/api/doc/';
     var idx = array.indexOf(elemento);
 
     if (idx >= 0) {
