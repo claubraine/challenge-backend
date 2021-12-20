@@ -186,12 +186,12 @@ npm run build
      | 
      |-- config/                              
      |    |-- config.ts                     # Configuration       
-     |    |-- passport.ts                   # Define Passport Strategy    
-     |    |-- safeRoutes.ts                 # Define access
+     |    |-- passport.ts                   # Defines Passport Strategy    
+     |    |-- safeRoutes.ts                 # Defines access
      |
      |-- controllers/                              
      |    |-- mensageria-controller.ts      # Defines shipping procedures       
-     |    |-- users-controller.ts           # Define user proceduresy    
+     |    |-- users-controller.ts           # Defines user proceduresy    
      |-- migration/postgresql
      |    |-- some_migration.ts             # Database migrations
      |
@@ -200,14 +200,14 @@ npm run build
      |    |-- user.ts                       # User Model (Typeorm) 
      | 
      |-- routes/
-     |    |-- index.ts                      # Define API Routes
-     |    |-- mensageria.routes.ts          # Define Mensageria API Routes
-     |    |-- service.routes.ts             # Define Service API Routes
-     |    |-- users.routes.ts               # Define Users API Routes
+     |    |-- index.ts                      # Defines API Routes
+     |    |-- mensageria.routes.ts          # Defines Mensageria API Routes
+     |    |-- service.routes.ts             # Defines Service API Routes
+     |    |-- users.routes.ts               # Defines Users API Routes
      |
      |-- service/
-     |    |-- database_postgresql.ts        # Define database access settings
-     |    |-- database_postgresql_conf.ts   # Define database access settings
+     |    |-- database_postgresql.ts        # Defines database access settings
+     |    |-- database_postgresql_conf.ts   # Defines database access settings
      | 
      | 
      |-- index.js                           # API Entry Point
@@ -216,9 +216,9 @@ npm run build
      |-- API-NODEJS.postman_collection.json # File Integration API postman
      |
      .env                                   # Specify the ENV variables
-     ormconfig.json                         # Define ormconfig
-     package.json                           # Define package
-     swagger.js                             # Define swagger
+     ormconfig.json                         # Defines ormconfig
+     package.json                           # Defines package
+     swagger.js                             # Defines swagger
      |                        
      |-- ************************************************************************
 ```
@@ -227,9 +227,15 @@ npm run build
 
 ## API
 
-Swagger
-API DOCUMENTAÇÃO: http://localhost:5000/api/doc
-
+> Postman - API DOCUMENTATION
+```
+https://github.com/claubraine/challenge-backend/blob/main/files/API-NODEJS.postman_collection.json
+```
+> Swagger - API DOCUMENTATION
+```
+http://localhost:5000/api/doc
+```
+## Swagger
 > **Register User** - `/api/v1/user`
 ```
 POST /api/v1/user
