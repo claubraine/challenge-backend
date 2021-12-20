@@ -344,15 +344,11 @@ x-access-token: JWT_TOKEN (returned by Login request)
 
 
 # Scripts
-
-> "start": "pm2 start production.config.json",
-</br>
-> "start-node": "node build/src/index.js",
-</br>
-> "dev": "ts-node-dev src/index.ts",
-</br>
-> "build": "tsc -p tsconfig.build.json",
-</br>
-> "autogen-swagger": "node swagger.js",
-</br>
-> "producao": "npm run autogen-swagger && npm run build && npm run start-node && exit"
+```bash
+"start": "pm2 start production.config.json",
+"start-node": "node build/src/index.js",
+"dev": "ts-node-dev src/index.ts",
+"build": "tsc -p tsconfig.build.json",
+"autogen-swagger": "node swagger.js",
+"producao": "npm run autogen-swagger && npm run build && npm run start-node && exit"
+```
