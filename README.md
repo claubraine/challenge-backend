@@ -90,7 +90,7 @@ https://www.shsquads.com
 
 > Clone the project:
 ```bash
-$ git clone https://github.com/claubraine/tarefaNode.git
+$ git clone https://github.com/claubraine/challenge-backend.git
 ```
 > node.js version:
 ```bash
