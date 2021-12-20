@@ -236,6 +236,9 @@ https://github.com/claubraine/challenge-backend/blob/main/files/API-NODEJS.postm
 http://localhost:5000/api/doc
 ```
 ## Swagger
+
+![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger01.png)
+
 > **Register User** - `/api/v1/user`
 ```
 POST /api/v1/user
@@ -248,6 +251,7 @@ Content-Type: application/json
     "host":"99999"
 }
 ```
+![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger02.png)
 > **Login User** - `/api/v1/user/login`
 ```
 POST /api/v1/user/login
@@ -257,6 +261,7 @@ Content-Type: application/json
     "email":"test@appseed.us"
 }
 ```
+![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger03.png)
 > **Update User** - `/api/v1/user/edit`
 ```
 POST /api/v1/user/edit
@@ -274,7 +279,12 @@ x-access-token: JWT_TOKEN (returned by Login request)
     "token":"JWT_TOKEN"
 }
 ```
-
+> **Comments**
+```
+When using the API through the swagger, the 'host' value may be sent as 'http://localhost:5000/api/doc/'.
+When using the API through Postman, the value 'host' may be sent as 'undefined'.
+For these values, they are under development for testing purposes.
+```
 > **Send email** - `/api/v1/mensageria/send`
 ```
 POST /api/v1/mensageria/send
@@ -286,13 +296,6 @@ Content-Type: application/json
   "html": "<b>Conteudo</b>",
   "key": "111111"
 }
-```
-
-> **Comments**
-```
-When using the API through the swagger, the 'host' value may be sent as 'http://localhost:5000/api/doc/'.
-When using the API through Postman, the value 'host' may be sent as 'undefined'.
-For these values, they are under development for testing purposes.
 ```
 > **Send email - list** - `/api/v1/mensageria/send`
 ```
@@ -306,6 +309,7 @@ Content-Type: application/json
   "key": "111111"
 }
 ```
+![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger05.png)
 > **Send email by token** - `/api/v1/mensageria/sendbytoken`
 > </br>
 > You can choose to use the 'authentication' option together with the 'key', giving an extra layer of security.
@@ -334,6 +338,7 @@ x-access-token: JWT_TOKEN (returned by Login request)
   "key": "111111"
 }
 ```
+![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger06.png)
 <br />
 
 
