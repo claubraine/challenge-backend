@@ -307,6 +307,8 @@ Content-Type: application/json
 }
 ```
 > **Send email by token** - `/api/v1/mensageria/sendbytoken`
+> </br>
+> You can choose to use the 'authentication' option together with the 'key', giving an extra layer of security.
 ```
 POST /api/v1/mensageria/sendbytoken
 Content-Type: application/json
