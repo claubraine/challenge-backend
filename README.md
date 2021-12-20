@@ -83,3 +83,251 @@ https://www.shsquads.com
 <br>
 
 <a target='_blank'><img align="right" class='header-img' width=230px height=250px src='https://user-images.githubusercontent.com/54849358/78149611-90715f00-740c-11ea-8d21-4654691dca88.png' /></a>
+
+<br>
+
+## Initial challenge
+
+> Clone the project:
+```bash
+$ git clone https://github.com/claubraine/tarefaNode.git
+```
+> node.js version:
+```bash
+v16.13.1
+```
+> Download updated version
+https://nodejs.org
+
+## Installing project dependencies
+> Inside the project folder:
+```bash
+$ npm install
+```
+
+## Configuring Mailgun
+> You can use your settings, or use the configuration below, it allows sending to the account 'claubraine@yahoo.com.br'
+Edit the .env file
+```bash
+API_KEY=e9f780e2374df57c751f1193db0c0f6a-8ed21946-284cd488
+DOMAIN=sandboxa181135390e44fd2873eca91e33900dd.mailgun.org
+```
+
+## Database
+> You can use your settings, or use the setting below
+> Setting up Postgresql database:
+Edit the .env file
+```bash
+POSTGRES_HOST=ec2-54-160-96-70.compute-1.amazonaws.com
+POSTGRES_PORT=5432
+POSTGRES_USER=dyyserxaqaenqn
+POSTGRES_PASSWORD=3acc53ea009d9976e998bb163abc368bfaee82fac287810473fb81598fd84ae0
+POSTGRES_DB=d3v4uq505jqg87
+```
+> Edit the ormconfig.json file
+```bash
+    {
+      "skip": true,
+      "name": "default",
+      "type": "postgres",
+      "host": "ec2-54-160-96-70.compute-1.amazonaws.com",
+      "port": 5432,
+      "username": "dyyserxaqaenqn",
+      "password": "3acc53ea009d9976e998bb163abc368bfaee82fac287810473fb81598fd84ae0",
+      "database": "d3v4uq505jqg87",
+      "extra": {
+        "ssl": {
+          "rejectUnauthorized": false
+        }
+      },
+      "entities": [
+        "./src/models/postgresql/**/*.ts"
+      ],
+      "migrations": [
+        "./src/migrations/postgresql/*.ts"
+      ],
+      "cli": {
+        "migrationsDir": "./src/migrations/postgresql/"
+      }
+    },
+```
+> Generate migration:
+
+```bash
+$ yarn typeorm migration:generate -n migration
+```
+
+> run migration: 
+
+```bash
+$ yarn typeorm migration:run
+```
+## Running the project
+> The Command below updates the swagger file, generates the files in the build folder and puts the project into execution
+```bash
+$ npm run producao
+```
+Optional commands
+</br>
+> updates the swagger file
+```bash
+$ npm run autogen-swagger
+```
+> Generates the files in the build folder
+```bash
+npm run build
+```
+## Codebase Structure
+
+```bash
+< ROOT / src >
+     |
+     build                                  # Folder where the build files will be
+     | 
+     |-- config/                              
+     |    |-- config.ts                     # Configuration       
+     |    |-- passport.ts                   # Define Passport Strategy    
+     |    |-- safeRoutes.ts                 # Define access
+     |
+     |-- controllers/                              
+     |    |-- mensageria-controller.ts      # Defines shipping procedures       
+     |    |-- users-controller.ts           # Define user proceduresy    
+     |-- migration/postgresql
+     |    |-- some_migration.ts             # Database migrations
+     |
+     |-- models/postgresql                              
+     |    |-- activeSession.ts              # Sessions Model (Typeorm)              
+     |    |-- user.ts                       # User Model (Typeorm) 
+     | 
+     |-- routes/
+     |    |-- index.ts                      # Define API Routes
+     |    |-- mensageria.routes.ts          # Define Mensageria API Routes
+     |    |-- service.routes.ts             # Define Service API Routes
+     |    |-- users.routes.ts               # Define Users API Routes
+     |
+     |-- service/
+     |    |-- database_postgresql.ts        # Define database access settings
+     |    |-- database_postgresql_conf.ts   # Define database access settings
+     | 
+     | 
+     |-- index.js                           # API Entry Point
+     .env                                   # Specify the ENV variables
+     ormconfig.json                         # Define ormconfig
+     package.json                           # Define package
+     swagger.js                             # Define swagger
+     |                        
+     |-- ************************************************************************
+```
+
+<br />
+
+## API
+
+Swagger
+API DOCUMENTAÇÃO: http://localhost:5000/api/doc
+
+> **Register User** - `/api/v1/user`
+```
+POST /api/v1/user
+Content-Type: application/json
+{
+    "username":"teste",
+    "password":"123456", 
+    "email":"teste@teste.com",
+    "key":"111111",
+    "host":"99999"
+}
+```
+> **Login User** - `/api/v1/user/login`
+```
+POST /api/v1/user/login
+Content-Type: application/json
+{
+    "password":"pass", 
+    "email":"test@appseed.us"
+}
+```
+> **Update User** - `/api/v1/user/edit`
+```
+POST /api/v1/user/edit
+Content-Type: application/json
+x-access-token: JWT_TOKEN (returned by Login request)
+
+```
+> **Logout User** - `/api/v1/user/logout`
+```
+POST /api/v1/user/logout
+Content-Type: application/json
+x-access-token: JWT_TOKEN (returned by Login request)
+
+{
+    "token":"JWT_TOKEN"
+}
+```
+> **Send email** - `/api/v1/mensageria/send`
+```
+POST /api/v1/mensageria/send
+Content-Type: application/json
+{
+  "from": "claubraine@mail.com",
+  "email": "claubraine@yahoo.com.br",
+  "subject": "Assunto",
+  "html": "<b>Conteudo</b>",
+  "key": "111111"
+}
+```
+> **Send email - list** - `/api/v1/mensageria/send`
+```
+POST /api/v1/mensageria/send
+Content-Type: application/json
+{
+  "from": "claubraine@mail.com",
+  "email": "claubraine@yahoo.com.br, braine@bol.com.br",
+  "subject": "Assunto",
+  "html": "<b>Conteudo</b>",
+  "key": "111111"
+}
+```
+> **Send email by token** - `/api/v1/mensageria/sendbytoken`
+```
+POST /api/v1/mensageria/sendbytoken
+Content-Type: application/json
+x-access-token: JWT_TOKEN (returned by Login request)
+{
+  "from": "claubraine@mail.com",
+  "email": "claubraine@yahoo.com.br",
+  "subject": "Assunto",
+  "html": "<b>Conteudo</b>",
+  "key": "111111"
+}
+```
+> **Send email by token - list** - `/api/v1/mensageria/sendbytoken`
+```
+POST /api/v1/mensageria/sendbytoken
+Content-Type: application/json
+x-access-token: JWT_TOKEN (returned by Login request)
+{
+  "from": "claubraine@mail.com",
+  "email": "claubraine@yahoo.com.br, braine@bol.com.br",
+  "subject": "Assunto",
+  "html": "<b>Conteudo</b>",
+  "key": "111111"
+}
+```
+<br />
+
+
+
+# Scripts
+
+> "start": "pm2 start production.config.json",
+</br>
+> "start-node": "node build/src/index.js",
+</br>
+> "dev": "ts-node-dev src/index.ts",
+</br>
+> "build": "tsc -p tsconfig.build.json",
+</br>
+> "autogen-swagger": "node swagger.js",
+</br>
+> "producao": "npm run autogen-swagger && npm run build && npm run start-node && exit"

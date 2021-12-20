@@ -1,0 +1,1462 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "3.0.1",
+    "title": "API SERVER",
+    "description": "Documentação automática gerada pelo modulo <b>swagger</b>."
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Service",
+      "description": "Test connection / Teste conexão"
+    },
+    {
+      "name": "Mensageria",
+      "description": "Messaging settings / Configurações mensageria"
+    },
+    {
+      "name": "Users",
+      "description": "Users Settings / Configuracões usuarios"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "x-access-token",
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token",
+      "bearerFormat": "JWT",
+      "in": "header"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Service"
+        ],
+        "description": "TESTE - API - Serviço de Integração",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "SUCESSO - API - Serviço de Integração"
+          }
+        }
+      }
+    },
+    "/api/v1/mensageria/send": {
+      "post": {
+        "tags": [
+          "Mensageria"
+        ],
+        "description": "Sending email",
+        "parameters": [
+          {
+            "name": "referer",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Editar Usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/post_mensageria_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Queued. Thank you."
+                  },
+                  "from": {
+                    "type": "string",
+                    "example": "xxxxx@xxxx.com"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "yyyyyy@yyyy.com.br"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "example": "Subject"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "validation error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "validation error"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "\"from\" is a required field, \"email\" cannot be empty, \"subject\" cannot be empty, \"html\" cannot be empty"
+                },
+                "params": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "subject": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "html": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "host error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "host error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "key error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "key error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mensageria/sendbytoken": {
+      "post": {
+        "tags": [
+          "Mensageria"
+        ],
+        "description": "Sending email using token",
+        "parameters": [
+          {
+            "name": "referer",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Editar Usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/post_mensageria_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Queued. Thank you."
+                  },
+                  "from": {
+                    "type": "string",
+                    "example": "xxxxx@xxxx.com"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "yyyyyy@yyyy.com.br"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "example": "Subject"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "validation error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "validation error"
+                },
+                "error": {
+                  "type": "string",
+                  "example": "\"from\" is a required field, \"email\" cannot be empty, \"subject\" cannot be empty, \"html\" cannot be empty"
+                },
+                "params": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "subject": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "html": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "host error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "host error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "key error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "key error"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Login",
+        "parameters": [
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "User Login",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/post_login_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "token": {
+                  "type": "string",
+                  "example": ""
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Validation error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Validation error: ..."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "Validation error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Wrong credentials or unregistered user"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "No password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "No password"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Wrong credentials or unregistered user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Wrong credentials or unregistered user"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/logout": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Logout",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Logout",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/post_logout_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrong credentials or unregistered user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Token revoked",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Token revoked"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/user/checkSession": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Check session",
+        "parameters": [
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "check session",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/post_checkSession_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Register new User",
+        "parameters": [
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Register new User",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/post_user_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "userID": {
+                  "type": "string",
+                  "example": "5020bf49-96ba-4c84-9b52-442e3b3384e2"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "User registered successfully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "validation error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Validation error: ..."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "Email already exists",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Email already exists"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/edit": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Edit user",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Edit user",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/put_user_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "User updated successfully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Erro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Mistake. Please contact the administrator"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/edit/email": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Edit email",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Edit email",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/put_user_email_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "success": true,
+            "msg": "Email successfully edited"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "success": false,
+            "msg": "Mistake. Please contact the administrator"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/edit/senha": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Editar Usuário",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Editar Usuário",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/put_user_senha_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Password updated successfully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "User updated successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Erro ao atualizar senha"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/delete": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete user",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Delete user",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/delete_user_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Sucess"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/all": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "List all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "5020bf49-96ba-4c84-9b52-442e3b3384e2"
+                      },
+                      "username": {
+                        "type": "string",
+                        "example": "teste"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "claubraine@yahoo.com.br"
+                      },
+                      "status": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "confirmacao_registro": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "confirmacao_token": {
+                        "type": "string",
+                        "example": "2b10QedOmhW9BmM4MggHM4mRvhUgQsmNrbVmri1FXF3YsF5M0Oljpu"
+                      },
+                      "user_token": {
+                        "type": "string",
+                        "example": "2b10QedOmhW9BmM4MggHM4mR1q1MCREaBbktnQnbVtTzTCuFVZYYmO"
+                      },
+                      "key": {
+                        "type": "string",
+                        "example": "11111"
+                      },
+                      "host": {
+                        "type": "string",
+                        "example": "88888"
+                      },
+                      "date": {
+                        "type": "string",
+                        "example": "2021-12-20"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/search": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Find all users",
+        "parameters": [
+          {
+            "name": "dados",
+            "in": "body",
+            "description": "Find all users",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/post_user_busca_req"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/user/{email}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Listar Usuário por Email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Record deleted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Record deleted successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/{userToken}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Listar Usuário por Token",
+        "parameters": [
+          {
+            "name": "userToken",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "lists of user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "no records found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "mensage": {
+                  "type": "string",
+                  "example": "no records found"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/{userID}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Listar Usuário por ID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "lists of user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "users": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "no records found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "mensage": {
+                  "type": "string",
+                  "example": "no records found"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "post_mensageria_req": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "example": ""
+        },
+        "email": {
+          "type": "string",
+          "example": ""
+        },
+        "subject": {
+          "type": "string",
+          "example": ""
+        },
+        "html": {
+          "type": "string",
+          "example": ""
+        },
+        "key": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "from",
+        "email",
+        "subject",
+        "html",
+        "key"
+      ]
+    },
+    "post_login_req": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": ""
+        },
+        "password": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "post_logout_req": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "post_checkSession_req": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "post_user_req": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": ""
+        },
+        "email": {
+          "type": "string",
+          "example": ""
+        },
+        "password": {
+          "type": "string",
+          "example": ""
+        },
+        "key": {
+          "type": "string",
+          "example": ""
+        },
+        "host": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "username",
+        "email",
+        "password",
+        "key",
+        "host"
+      ]
+    },
+    "put_user_req": {
+      "type": "object",
+      "properties": {
+        "userToken": {
+          "type": "string",
+          "example": ""
+        },
+        "username": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "userToken"
+      ]
+    },
+    "put_user_email_req": {
+      "type": "object",
+      "properties": {
+        "userToken": {
+          "type": "string",
+          "example": ""
+        },
+        "email": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "userToken",
+        "email"
+      ]
+    },
+    "put_user_senha_req": {
+      "type": "object",
+      "properties": {
+        "userToken": {
+          "type": "string",
+          "example": ""
+        },
+        "password": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "userToken",
+        "password"
+      ]
+    },
+    "delete_user_req": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "userID"
+      ]
+    },
+    "post_user_busca_req": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "string",
+          "example": ""
+        },
+        "username": {
+          "type": "string",
+          "example": ""
+        },
+        "email": {
+          "type": "string",
+          "example": ""
+        }
+      }
+    }
+  }
+}
