@@ -341,8 +341,6 @@ x-access-token: JWT_TOKEN (returned by Login request)
 ![alt text](https://github.com/claubraine/challenge-backend/blob/main/files/swagger06.png)
 <br />
 
-
-
 # Scripts
 ```bash
 "start": "pm2 start production.config.json",
@@ -352,3 +350,28 @@ x-access-token: JWT_TOKEN (returned by Login request)
 "autogen-swagger": "node swagger.js",
 "producao": "npm run autogen-swagger && npm run build && npm run start-node && exit"
 ```
+<br />
+
+# Implementations holes
+> I develop features for push and msn
+
+## Codebase Structure
+
+```bash
+< ROOT / src >
+     |
+     |-- controllers/                              
+     |    |-- push-controller.ts            # Defines push procedures       
+     |    |-- sms-controller.ts             # Defines sms proceduresy  
+     |
+     |-- routes/
+     |    |-- push.routes.ts                # Defines Push API Routes
+     |    |-- sms.routes.ts                 # Defines SMS API Routes
+     |
+     |-- ************************************************************************
+```
+
+
+
+
+
