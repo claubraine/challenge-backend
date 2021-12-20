@@ -211,6 +211,10 @@ npm run build
      | 
      | 
      |-- index.js                           # API Entry Point
+     |
+     files                                  # Attached files
+     |-- API-NODEJS.postman_collection.json # File Integration API postman
+     |
      .env                                   # Specify the ENV variables
      ormconfig.json                         # Define ormconfig
      package.json                           # Define package
