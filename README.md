@@ -274,6 +274,7 @@ x-access-token: JWT_TOKEN (returned by Login request)
     "token":"JWT_TOKEN"
 }
 ```
+
 > **Send email** - `/api/v1/mensageria/send`
 ```
 POST /api/v1/mensageria/send
@@ -285,6 +286,13 @@ Content-Type: application/json
   "html": "<b>Conteudo</b>",
   "key": "111111"
 }
+```
+
+> **Comments**
+```
+When using the API through the swagger, the 'host' value may be sent as 'http://localhost:5000/api/doc/'.
+When using the API through Postman, the value 'host' may be sent as 'undefined'.
+For these values, they are under development for testing purposes.
 ```
 > **Send email - list** - `/api/v1/mensageria/send`
 ```
